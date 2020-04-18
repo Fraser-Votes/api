@@ -5,11 +5,16 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  /vote:
+  /votes:
     post:
       summary: Submit Vote
       tags: []
-      responses: {}
+      responses:
+        '201':
+          description: Created
+        '406':
+          description: Not Acceptable
       operationId: post-vote
+    parameters: []
 components:
   schemas: {}
