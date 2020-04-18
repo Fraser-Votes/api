@@ -3,7 +3,7 @@ info:
   title: voting
   version: '1.0'
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'https://api.fraservotes.com'
 paths:
   /votes:
     post:
@@ -15,6 +15,8 @@ paths:
         '406':
           description: Not Acceptable
       operationId: post-vote
+      description: ''
     parameters: []
 components:
   schemas: {}
+  securitySchemes: {}
