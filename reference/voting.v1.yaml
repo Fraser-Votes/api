@@ -32,7 +32,6 @@ paths:
                     - treasurer
                     - promotions-officer
                     - social-convenor
-                  example: john-doe
                   properties:
                     president:
                       type: string
