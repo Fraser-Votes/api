@@ -5,7 +5,7 @@ info:
 servers:
   - url: 'https://api.fraservotes.com'
 paths:
-  /votes:
+  /vote:
     post:
       summary: Submit Vote
       tags: []
@@ -16,6 +16,7 @@ paths:
           description: Not Acceptable
       operationId: post-vote
       description: ''
+      parameters: []
     parameters: []
 components:
   schemas: {}
