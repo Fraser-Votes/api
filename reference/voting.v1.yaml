@@ -1,0 +1,15 @@
+openapi: 3.0.0
+info:
+  title: voting
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /vote:
+    post:
+      summary: Submit Vote
+      tags: []
+      responses: {}
+      operationId: post-vote
+components:
+  schemas: {}
