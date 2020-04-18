@@ -15,8 +15,47 @@ paths:
         '406':
           description: Not Acceptable
       operationId: post-vote
-      description: Create a GPG encrypted ballot in Firestore.
+      description: Creates a GPG encrypted ballot in Firestore.
       parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                votes:
+                  type: object
+                  required:
+                    - president
+                    - vice-president
+                    - secretary
+                    - treasurer
+                    - promotions-officer
+                    - social-convenor
+                  example: john-doe
+                  properties:
+                    president:
+                      type: string
+                      example: john-doe
+                    vice-president:
+                      type: string
+                      example: john-doe
+                    secretary:
+                      type: string
+                      example: john-doe
+                    treasurer:
+                      type: string
+                      example: john-doe
+                    promotions-officer:
+                      type: string
+                      example: john-doe
+                    social-convenor:
+                      type: string
+                      example: john-doe
+              required:
+                - votes
+            examples: {}
+        description: "Include votes in the request body. Each position ID corresponds to a candidate ID (string).\nUser auth information is automatically sent to the Cloud Function through the Firebase Web SDK's own handlers. "
     parameters: []
 components:
   schemas: {}
