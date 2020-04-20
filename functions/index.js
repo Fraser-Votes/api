@@ -1,7 +1,8 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+const cors = require('cors')({origin: true})
 admin.initializeApp({
-    credential: admin.credential.cert(require("../fraser-votes-firebase-adminsdk-tnue9-356f4872d6.json"))
+    credential: admin.credential.applicationDefault() //must be set as an ENV variable to the path of the json file
 });
 
 let studentNumber = null;
