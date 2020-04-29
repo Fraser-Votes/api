@@ -1,7 +1,12 @@
 openapi: 3.0.0
 info:
   title: voting
-  version: '1.0'
+  version: 0.1.0
+  contact:
+    name: Fraser Votes
+    url: fraservotes.com
+    email: hello@fraservotes.com
+  description: An API that connects the Fraser Votes frontend with Firebase
 servers:
   - url: 'https://api.fraservotes.com'
 paths:
@@ -15,7 +20,7 @@ paths:
         '406':
           description: Not Acceptable
       operationId: post-vote
-      description: Creates a GPG encrypted ballot in Firestore.
+      description: Submit vote to database
       parameters: []
       requestBody:
         content:
@@ -23,38 +28,25 @@ paths:
             schema:
               type: object
               properties:
-                votes:
+                context:
                   type: object
-                  required:
-                    - president
-                    - vice-president
-                    - secretary
-                    - treasurer
-                    - promotions-officer
-                    - social-convenor
                   properties:
-                    president:
-                      type: string
-                      example: john-doe
-                    vice-president:
-                      type: string
-                      example: john-doe
-                    secretary:
-                      type: string
-                      example: john-doe
-                    treasurer:
-                      type: string
-                      example: john-doe
-                    promotions-officer:
-                      type: string
-                      example: john-doe
-                    social-convenor:
-                      type: string
-                      example: john-doe
-              required:
-                - votes
+                    auth:
+                      type: object
+                      properties:
+                        uid:
+                          type: string
+                        token:
+                          type: object
+                          properties:
+                            email:
+                              type: string
+                data:
+                  type: object
+                  properties:
+                    votes:
+                      type: object
             examples: {}
-        description: "Include votes in the request body. Each position ID corresponds to a candidate ID (string).\nUser auth information is automatically sent to the Cloud Function through the Firebase Web SDK's own handlers. "
     parameters: []
 components:
   schemas: {}
