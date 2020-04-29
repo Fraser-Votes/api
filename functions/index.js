@@ -33,7 +33,7 @@ exports.vote = functions.https.onCall(async (data, context) => {
             // start making edits with the batch
             batch.create(ballotRef, {
                 date:  admin.firestore.FieldValue.serverTimestamp(),
-                userUD: context.auth.token.uid,
+                userID: context.auth.uid,
                 votes: data.votes
             })
             batch.update(userRef, {voted: true})
