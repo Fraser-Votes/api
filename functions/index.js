@@ -1,6 +1,7 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const cors = require('cors')({origin: true});
+const fetch = require('node-fetch');
 admin.initializeApp({
     credential: admin.credential.applicationDefault() //must be set as an ENV variable to the path of the json file
 });
@@ -38,6 +39,21 @@ exports.vote = functions.https.onCall(async (data, context) => {
             })
             batch.update(userRef, {voted: true})
             batch.commit().then((res) => {
+                fetch("https://plausible.io/api/event", {
+                    "headers": {
+                        "accept": "*/*",
+                        "accept-language": "en-CA,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+                        "content-type": "text/plain",
+                        "sec-fetch-dest": "empty",
+                        "sec-fetch-mode": "cors",
+                        "sec-fetch-site": "cross-site"
+                    },
+                    "referrer": "https://fraservotes.com/login",
+                    "referrerPolicy": "no-referrer-when-downgrade",
+                    "body": "{\"name\":\"Vote\",\"url\":\"https://fraservotes.com/app/voting\",\"domain\":\"fraservotes.com\",\"referrer\":null,\"source\":null}",
+                    "method": "POST",
+                    "mode": "cors"
+                });
                 return true
             }).catch((err) => {
                 throw new functions.https.HttpsError("error voting", err)
